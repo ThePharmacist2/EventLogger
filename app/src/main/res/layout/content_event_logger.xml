@@ -75,9 +75,9 @@
         android:text="@string/time"
         android:id="@+id/textView"
         android:textSize="20dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignRight="@+id/txtviewDate"
-        android:layout_alignEnd="@+id/txtviewDate" />
+        android:layout_alignTop="@+id/spnrFirstTime"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,8 +93,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/spnrFirstTime"
         android:layout_alignTop="@+id/textView2"
-        android:layout_alignRight="@+id/spnrMonth"
-        android:layout_alignEnd="@+id/spnrMonth" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Spinner
         android:layout_width="wrap_content"

@@ -26,46 +26,40 @@ public class CheckEvents extends AppCompatActivity {
         txtvwEventInfo = (TextView) findViewById(R.id.txtvwEventInfo);
     }
 
-    /**
-     * searchContact converts the passed array from Parcelable[] to Contact[] and loops through
-     * the array to search for a specific contact's information and display it for the user
-     *
-     * @param vw is the button that the searchContact method is connected to
-     */
-    public void searchContact(View vw){
 
+    public void searchContact(View vw){
+//determines what string to search for
         String nameToSearch = edtxtSearchEvent.getText().toString();
 
         Parcelable[] interim = getIntent().getExtras().getParcelableArray("CONTACTS_ARRAY");
 
         Event[] events = new Event[interim.length];
 
-        //creates Contact objects from Parcelable objects
+       //itterates through the array
         for(int i = 0; i < events.length; i++){
             events[i] = (Event) interim[i];
         }
 
-        String contactInfo = "";
+        String eventInfo = "";
 
         if(nameToSearch.isEmpty()){
             txtvwEventInfo.setText("You must enter a name to search for a contact!");
         } else {
 
-            //iterates through array to search for a specific contact's name
+
             for(int j = 0; j < events.length; j++){
 
-                //first must check that the element at j is actually a Contact objact
-                //and then tests String equivalence
+              //determines what the text for the even info is and makes sure that the event info is being pulled from the correct event
                 if(events[j] != null && nameToSearch.equals(events[j].getEventName())){
-                    contactInfo += String.format("Event: %s \nDate: " +
+                    eventInfo += String.format("Event: %s \nDate: " +
                                     "%s %s\n Time: %s till %s \n\n", events[j].getEventName(), events[j].getMonth(),
                             events[j].getDay(),events[j].getTimeFirst(),events[j].getTimeSecond());
                 }
 
             }
 
-            //displays the info of the searched Contact
-            txtvwEventInfo.setText(contactInfo);
+            //displays info for event
+            txtvwEventInfo.setText(eventInfo);
 
         }
 

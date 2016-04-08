@@ -17,7 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class EventLogger extends AppCompatActivity {
-
+//stating all variables used in the code
     private static Event[] eventsArray = new Event[10];
     private static int numEventsAdded = 0;
     private Spinner spnrFirstTime;
@@ -36,7 +36,7 @@ public class EventLogger extends AppCompatActivity {
 
         edtxtEventName = (EditText) findViewById(R.id.edtxtEventName);
         txtvwError = (TextView) findViewById(R.id.txtvwError);
-
+//creating all spinner arrays for the app
         spnrFirstTime = (Spinner) findViewById(R.id.spnrFirstTime);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
         R.array.secondTime_array, android.R.layout.simple_spinner_item);
@@ -74,19 +74,17 @@ public class EventLogger extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_event_logger, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+
         if (id == R.id.action_settings) {
             return true;
         }
@@ -97,25 +95,25 @@ public class EventLogger extends AppCompatActivity {
     public void addEvent(View vw) {
 
         Event eventToAdd;
-
+//makes sure there is an event name
         if (edtxtEventName.getText().equals("")) {
 
             txtvwError.setText("You must enter a name to add an event!");
 
         } else {
-
+//makes sure you haven't maxed the number of events you can hold
             if (numEventsAdded < eventsArray.length) {
 
-                //creates a new Contact object to be added to the array
+                //adds all the elements of the event in order or which they are going to appear later
                 eventToAdd = new Event(edtxtEventName.getText().toString(), spnrMonth.getSelectedItem().toString(), spnrDay.getSelectedItem().toString(), spnrFirstTime.getSelectedItem().toString(), spnrSecondTime.getSelectedItem().toString());
 
-                //adds the Contact to the array at the current index
+
                 eventsArray[numEventsAdded] = eventToAdd;
 
-                //increases the current index
+
                 numEventsAdded++;
 
-                //clears the Contact's information
+               //resets all selections when event is added
                 edtxtEventName.setText("");
                 spnrDay.setSelection(0);
                 spnrMonth.setSelection(0);
@@ -135,10 +133,10 @@ public class EventLogger extends AppCompatActivity {
         InputMethodManager inputManager = (InputMethodManager)
                 this.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(vw.getApplicationWindowToken(), 0);
-        //spnrDay.getSelectedItem().toString()
+
 
     }
-
+//goes to the new activity where you can search for your event
     public void displaySearchActivity(View vw) {
 
         Intent goToSearch = new Intent(this, CheckEvents.class);
